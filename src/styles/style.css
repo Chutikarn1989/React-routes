@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
+body{
+  color:#333333;
+  font-family: 'Fira Sans', sans-serif;
+}
+.primary{
+  background: #f2b632 !important;
+}
+.secondery{
+  background: #004d40 !important;
+  color: #ffffff !important
+}
