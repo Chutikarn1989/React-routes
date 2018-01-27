@@ -11,3 +11,6 @@ body{
   background: #004d40 !important;
   color: #ffffff !important
 }
+.bodyPart{
+  min-height: 450px;
+}
