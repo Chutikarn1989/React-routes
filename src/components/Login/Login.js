@@ -16,7 +16,7 @@ class Login extends Component {
     this.onChange = this.onChange.bind(this)
   }
   login(){
-     // ต้องไป call api เช็คการ login ส่ง post this.state ไปเช็ค ถ้าผ่าน ส่ง token กลับมา
+     // these is sample data in the other hand you have to use authen from api backend
       const fn ={
         userData:{
           username:"admin",
@@ -36,14 +36,13 @@ class Login extends Component {
         }}
 
       if(this.state.username && this.state.password){  // ทำ validate 
-        if(this.state.username === fn.userData.username && this.state.password === fn.userData.password){
-          sessionStorage.setItem('userData',rt)
+        if(this.state.username === fn.userData.username && this.state.password === fn.userData.password){ // call api then replace here
+          sessionStorage.setItem("userData",rt)
           this.setState({redirect:true})
         }else{
           console.log(err)
         }
       }
-      
       
   }
   onChange(e){
@@ -52,9 +51,14 @@ class Login extends Component {
   }
 
   render() {
+
     if(this.state.redirect){
       return(<Redirect to={'/home'} />)
     }
+    if(sessionStorage.getItem("userData")){
+      return(<Redirect to={'/home'} />)
+    }
+
     return (
       <div className="row small-up-2 medium-up-3 large-up-4">
         <div className="column bodyPart ">
