@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+// import { } from '../../services/PostData'
+import {Redirect} from 'react-router-dom'
+
 import './Login.css'
 class Login extends Component {
 
@@ -6,20 +9,53 @@ class Login extends Component {
     super(props)
     this.state ={
       username:'',
-      password:''
+      password:'',
+      redirect:false
     }
     this.login = this.login.bind(this)
     this.onChange = this.onChange.bind(this)
   }
   login(){
-      console.log("login function")
+     // ต้องไป call api เช็คการ login ส่ง post this.state ไปเช็ค ถ้าผ่าน ส่ง token กลับมา
+      const fn ={
+        userData:{
+          username:"admin",
+          password:"1234",
+          email:"anelhaman@hotmail"
+        }}
+      const rt ={
+        userData:{
+          username:"rachen",
+          token:"34n3rlkjn34krm34kmrkljoksrnt34564564kl34lk534lk",
+          email:"anelhaman@hotmail",
+          fullname:"rachen pengsang"
+        }}
+      const err = {
+        error:{
+          code:"login failed" 
+        }}
+
+      if(this.state.username && this.state.password){  // ทำ validate 
+        if(this.state.username === fn.userData.username && this.state.password === fn.userData.password){
+          sessionStorage.setItem('userData',rt)
+          this.setState({redirect:true})
+        }else{
+          console.log(err)
+        }
+      }
+      
+      
   }
-  onChange(){
-    console.log("coming here")
+  onChange(e){
+    this.setState({[e.target.name]:e.target.value})
+    // console.log(this.state)
   }
 
   render() {
-    return (  
+    if(this.state.redirect){
+      return(<Redirect to={'/home'} />)
+    }
+    return (
       <div className="row small-up-2 medium-up-3 large-up-4">
         <div className="column bodyPart ">
           <h2>Login Page</h2>

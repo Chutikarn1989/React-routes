@@ -3,10 +3,6 @@ import Routes from './routes'
 import Header from './components/Header/Header'
 import MobileHeader from './components/MobileHeader/MobileHeader'
 import Footer from './components/Footer/Footer'
-import Welcome from './components/Welcome/Welcome'
-import Login from './components/Login/Login'
-import Signup from './components/Signup/Signup'
-
 
 import './styles/foundation.min.css'
 import './styles/style.css'
