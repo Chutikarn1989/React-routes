@@ -13,17 +13,23 @@ class Home extends Component {
   }
 
   componentWillMount(){
-    if(sessionStorage.getItem("userData")){
-      console.log("yeah")
+    try {
+      if(localStorage.getItem("userData")){
+        console.log("yeah")
+      }
+      else{
+        this.setState({redirect: true})
+      }
+      
+    } catch (error) {
+      
     }
-    else{
-      this.setState({redirect: true})
-    }
+    
   }
 
   logout(){
-    sessionStorage.setItem("userData",'')
-    sessionStorage.clear()
+    localStorage.setItem("userData",'')
+    localStorage.clear()
     this.setState({redirect: true})
   }
 
@@ -33,7 +39,7 @@ class Home extends Component {
     }
     return (  
         <div className="row small-up-2 medium-up-3 large-up-4">
-        <div className="column bodyPart">
+        <div className="column bodyPart ">
           <h2>Home Page</h2>
           <button type="button" className="button" onClick={this.logout} >Logout </button>
         </div>

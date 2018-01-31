@@ -37,8 +37,13 @@ class Login extends Component {
 
       if(this.state.username && this.state.password){  // ทำ validate 
         if(this.state.username === fn.userData.username && this.state.password === fn.userData.password){ // call api then replace here
-          sessionStorage.setItem("userData",rt)
-          this.setState({redirect:true})
+          try {
+            localStorage.setItem("userData",rt)
+          this.setState({redirect:true})  
+          } catch (error) {
+            
+          }
+          
         }else{
           console.log(err)
         }
@@ -55,9 +60,14 @@ class Login extends Component {
     if(this.state.redirect){
       return(<Redirect to={'/home'} />)
     }
-    if(sessionStorage.getItem("userData")){
-      return(<Redirect to={'/home'} />)
+    try {
+      if(localStorage.getItem("userData")){
+        return(<Redirect to={'/home'} />)
+      }  
+    } catch (error) {
+      
     }
+    
 
     return (
       <div className="row small-up-2 medium-up-3 large-up-4">
